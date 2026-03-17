@@ -1,23 +1,34 @@
 fx_version 'cerulean'
-lua54 'yes'
 game 'gta5'
-
-author 'Gordela | New Age Studios'
-description 'Duty Logs + In-game Configurator (ox_lib)'
-version '1.0.0'
+author 'MRI'
+description 'Sistema de Logs de Ponto com UI Moderna'
+version '2.0.0'
 
 shared_scripts {
-    '@ox_lib/init.lua',   -- ox_lib
     'shared/config.lua',
+    '@ox_lib/init.lua',
 }
 
 client_scripts {
+    'client/main.lua',
     'client/config_ui.lua',
-    'client/*.lua',       -- seus outros clients (opcional)
 }
 
 server_scripts {
+    'server/main.lua',
     'server/config_store.lua',
-    'server/main.lua',       -- seus outros servers (opcional)
-    'server/backup_logs.lua'
+    'server/backup_logs.lua',
+}
+
+ui_page 'web/dist/index.html'
+
+files {
+    'web/dist/index.html',
+    'web/dist/assets/*.js', 
+    'web/dist/assets/*.css',
+    'web/src/**/*', -- Just in case dev mode
+    'web/*.tsx',
+    'web/*.tsx',
+    'web/*.ts',
+    'locales/*.json',
 }

@@ -1,0 +1,130 @@
+{
+    "error": {
+        "no_permission": "Você não tem permissão.",
+        "load_failed": "Falha ao carregar organizações.",
+        "job_not_authorized": "Seu job não está autorizado no sistema de logs.",
+        "min_grade": "Permissão insuficiente. Grade mínima: %s.",
+        "no_logs": "Nenhum log encontrado.",
+        "webhook_not_configured": "Webhook de relatório não configurado para esta organização.",
+        "staff_webhook_not_configured": "Config.StaffWebhook não configurado.",
+        "invalid_citizenid": "Informe o Passaporte (CitizenID).",
+        "no_logs_citizenid": "Nenhum log encontrado para esse Passaporte.",
+        "job_not_found": "Job '%s' não está em Config.AuthJobs.",
+        "usage_relatoriojob": "Uso: /relatoriojob <job> [dias]",
+        "invalid_job": "Job inválido.",
+        "save_failed": "Falha ao salvar organização.",
+        "update_failed": "Erro ao atualizar organização.",
+        "delete_failed": "Falha ao remover organização."
+    },
+    "success": {
+        "report_generated": "Arquivo de Relatório gerado em: %s",
+        "report_sent": "Relatório enviado no Discord da sua organização.",
+        "individual_report": "Relatório Individual gerado.",
+        "staff_report": "Relatório (STAFF) enviado.",
+        "backup_sql": "Backup SQL realizado.",
+        "cleared_logs": "Logs do banco de dados limpos com sucesso."
+    },
+    "notify": {
+        "org_created": "Organização criada!",
+        "org_saved": "Organização '%s' salva com sucesso!",
+        "org_updated": "Organização atualizada com sucesso!",
+        "org_deleted": "Organização removida.",
+        "backup_warning": "Use ferramentas de banco de dados para backup seguro.",
+        "cleared": "Tabela de logs limpa!",
+        "clear_cancelled": "Limpeza cancelada.",
+        "clear_sent": "Solicitação de limpeza enviada. Verifique a notificação.",
+        "backup_cancelled": "Backup cancelado.",
+        "backup_sent": "Solicitação de backup enviada. Verifique a notificação."
+    },
+    "log": {
+        "started_duty": "🟢 Iniciou Expediente",
+        "finished_duty": "🔴 Finalizou Expediente",
+        "report_generated": "📊 Relatório de Tempo Gerado",
+        "report_individual": "📊 Relatório Individual Gerado",
+        "report_staff": "📊 Relatório de Tempo Gerado (STAFF)"
+    },
+    "field": {
+        "collaborator": "👤 Colaborador",
+        "player_info": "🎮 Player INFO",
+        "grade": "👮 Cargo",
+        "start": "📅 Início",
+        "total_time": "⏱️ TEMPO TOTAL",
+        "entered": "📥 Entrou",
+        "exited": "📤 Saiu",
+        "exported_by": "👮 Relatório Exportado por",
+        "executor_info": "🆔 Info do Executor",
+        "passport": "🆔 Passaporte",
+        "discord": "🎮 Discord",
+        "period": "📅 %s",
+        "file": "📂 Arquivo",
+        "file_desc": "O relatório detalhado segue em anexo para baixar"
+    },
+    "report_title": {
+        "complete": "Relatório Completo Exportado",
+        "days": "Relatório exportado de %s dias"
+    },
+    "desc": {
+        "organization": "**Organização:** %s",
+        "default_log_title": "Logs "
+    },
+    "menu": {
+        "add_org": "Adicionar organização",
+        "add_org_desc": "Criar um novo registro para um job",
+        "tools": "Ferramentas do Ponto",
+        "tools_desc": "Ações administrativas (ex.: limpar histórico / backup)",
+        "edit_org": "Editar: %s",
+        "edit": "Editar",
+        "remove": "Remover",
+        "tools_title": "Ferramentas do Ponto",
+        "backup_title": "Gerenciamento de Logs"
+    },
+    "dialog": {
+        "create_org_title": "Novo Bate Ponto Log",
+        "edit_org_title": "Editar Organização: %s",
+        "add_title": "Nova Configuração",
+        "edit_title": "Editar Configuração"
+    },
+    "input": {
+        "job_name": "Emprego",
+        "job_name_desc": "Cargo que irá receber o sistema de ponto",
+        "webhook": "Webhook entrada/saida",
+        "webhook_desc": "Webhook para onde os logs de entrada e saída serão enviados",
+        "report_webhook": "Webhook Historico ponto",
+        "report_webhook_desc": "Webhook para onde os logs de histórico de ponto serão enviados",
+        "min_grade": "Grade do cargo",
+        "min_grade_desc": "Grade mínima para usar o comando de historico de ponto (0 para todos)",
+        "log_title": "Titulo do Bot",
+        "log_title_desc": "Título que aparecerá no log do Discord",
+        "color": "Cor (Hex ou RGB)",
+        "color_selector": "Cor do Embed (Seletor)",
+        "color_manual": "Ou Digite (RGB/Hex)",
+        "color_manual_desc": "Se preenchido, ignora o seletor acima.",
+        "color_manual_desc_edit": "Deixe vazio para usar o seletor.",
+        "icon_url": "Icon URL",
+        "icon_url_desc": "URL do ícone que aparecerá no log do Discord"
+    },
+    "alert": {
+        "delete_title": "Confirmar remoção",
+        "delete_msg": "Remover \"%s\"?",
+        "confirm_clear_title": "Confirmar limpeza",
+        "confirm_clear_msg": "Isso vai apagar TODOS os registros da tabela SQL.\nDeseja continuar?",
+        "confirm_backup_title": "Confirmar backup",
+        "confirm_backup_msg": "O sistema agora é 100% SQL. Faça o backup do seu banco de dados.\nDeseja continuar?",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+    },
+    "backup": {
+        "opt_clear": "Limpar histórico de ponto",
+        "opt_clear_desc": "Apaga TODO o conteúdo da tabela SQL (STAFF)",
+        "opt_backup": "Criar backup do histórico",
+        "opt_backup_desc": "Gera um backup SQL (Dump)"
+    },
+    "cmd": {
+        "relatorioorg_help": "Envia relatório de tempo da sua organização",
+        "days_param": "(opcional) considerar apenas últimos X dias",
+        "relatorioplayer_help": "Relatório de um colaborador específico",
+        "citizenid_param": "Passaporte do colaborador",
+        "relatoriojob_help": "Relatório de tempo por organização (STAFF)",
+        "job_param": "ex.: police, ambulance, mecano..."
+    }
+}

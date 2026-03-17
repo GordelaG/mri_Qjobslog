@@ -1,72 +1,88 @@
+# 🚓 Duty Log System (QBCore + ox_lib + oxmysql)
 
-# 🚓 Duty Log System with In-Game Config (ox_lib + QBCore)
+Sistema avançado de controle de ponto e relatórios para QBCore, integrado com Discord e MySQL.
 
-Este recurso permite controlar a entrada e saída de serviço dos jogadores com logs automáticos no Discord, além de fornecer uma interface administrativa via `ox_lib` para configurar cada organização diretamente in-game.
+Permite que organizações controlem a entrada e saída de serviço dos seus membros, com logs automáticos, relatórios detalhados em CSV/Excel e configuração completa in-game.
 
 ---
+
+## 🌟 Novidades (v2.0)
+
+- **Nova UI (Dashboard):** Painel moderno para gerenciar tudo.
+- **Banco de Dados SQL:** Adeus arquivos JSON! Todos os logs e configurações agora são salvos no MySQL (`oxmysql`).
+- **Relatórios Unificados:** Embeds bonitos no Discord com arquivo `.xls` anexado na mesma mensagem.
+- **Localização:** Suporte completo a tradução (padrão: `pt-br`) via arquivo JSON aninhado.
+- **Relatório Individual:** Puxe a capivara completa de um único jogador.
+- **Proteção de Dados:** Logs incluem Passaporte (CitizenID), Discord ID e Nome.
 
 ## 🧰 Funcionalidades
 
-- Registro de entrada e saída de serviço
-- Logs automáticos enviados para webhooks (entrada/saída e histórico)
-- Interface completa via `ox_lib` para criar, editar e remover organizações
-- Salva todas as configurações em `logs/org_config.json`
-- Backup e limpeza de logs em `logs/duty_logs.json`
-- Compatível com QBCore (também detecta eventos do QBox e MRI_QDuty)
-- Permissões administrativas integradas via `QBCore.Functions.HasPermission`
+- **Logs Automáticos:** Detecta entrada/saída de serviço (mesmo se o servidor reiniciar ou script for reiniciado).
+- **Interface In-Game:** Use `/logconfig` para adicionar/editar webhooks, cores e ícones de qualquer job.
+- **Relatórios Completos:**
+  - Histórico por Organização
+  - Histórico por Jogador
+  - Cálculo automático de duração
+  - Exportação para Excel (.xls) direto no Discord
+- **Migração Automática:** Se você tinha a versão antiga (JSON), ele tenta migrar as configs para SQL na primeira execução.
 
 ---
 
-## 🕹️ Comandos Disponíveis
+## 🕹️ Comandos
 
-| Comando | Descrição |
-|--------|-----------|
-| `/logconfig` | Abre o menu de administração para configurar organizações (admin only) |
-| `/logtools` | Abre o menu de ferramentas (limpeza e backup dos logs) |
-| `/relatorioorg [dias]` | *(planejado)* Envia para o Discord o histórico de todas organizações dos últimos X dias |
-| `/relatoriojob [job] [dias]` | *(planejado)* Envia para o Discord o histórico do job especificado nos últimos X dias |
+### Administrativos
 
-> ⚠️ Os dois últimos comandos não estão implementados no código atual, mas o sistema já suporta webhooks e estrutura para envio.
+| Comando                      | Permissão | Descrição                                                            |
+| :--------------------------- | :-------- | :------------------------------------------------------------------- |
+| `/logconfig`                 | Admin     | Abre o menu de gerenciamento de organizações (Add/Edit/Delete Jobs). |
+| `/logtools`                  | Admin     | Ferramentas de manutenção (Limpeza de Logs antigos, Backup manual).  |
+| `/relatoriojob [job] [dias]` | Admin     | Gera relatório de QUALQUER job (ex: `/relatoriojob police 30`).      |
 
----
+### Gerenciais (Líderes)
 
-## 🛠️ Estrutura de Arquivos
+| Comando                        | Permissão      | Descrição                                                    |
+| :----------------------------- | :------------- | :----------------------------------------------------------- |
+| `/relatorioorg [dias]`         | Grade Miníma\* | Gera relatório da _sua_ organização (ex: `/relatorioorg 7`). |
+| `/relatorioplayer [id] [dias]` | Grade Mínima\* | Gera relatório individual de um membro da _sua_ org.         |
 
-- `logs/org_config.json` – Armazena as configurações de cada organização (webhooks, cor, título, ícone etc.)
-- `logs/duty_logs.json` – Armazena o histórico de entrada/saída com timestamps e jogadores
-- `client/config_ui.lua` – Interface com `ox_lib` para gerenciar organizações
-- `server/config_store.lua` – Lógica de salvamento/carregamento de `org_config.json`
-- `server/backup_logs.lua` – Utilitários para limpar e fazer backup dos logs
-- `server/main.lua` – Lida com eventos de entrada/saída de serviço
+> \*A "Grade Mínima" é configurada in-game via `/logconfig`. Ex: Definir como 3 para que apenas Chefes possam puxar relatórios.
 
 ---
 
-## 👮 Permissões de Staff
+## 🛠️ Instalação
 
-O sistema considera como "admin":
-- Players com permissão `admin` via `QBCore.Functions.HasPermission`
-- ACE Permissions: `group.admin` ou `command`
+1. **Dependências:**
+   - `qb-core`
+   - `ox_lib`
+   - `oxmysql`
+
+2. **Banco de Dados:**
+   - O script cria as tabelas automaticamente (`mri_orgs_config` e `mri_duty_logs`).
+   - Se preferir, execute o `mri_Qjobslog.sql` manualmente.
+
+3. **Configuração:**
+   - Abra `shared/config.lua` para definir o Core e idioma.
+   - Configure o **Webhook de Staff** (para logs administrativos) no `Config.StaffWebhook`.
 
 ---
 
-## 💬 Webhooks
+## 🌍 Tradução
 
-Cada organização pode ter:
-- `Webhook`: para logs de entrada/saída
-- `ReportWebhook`: para logs históricos (como relatórios manuais)
+O sistema usa `locales/pt-br.json`. Você pode criar outros idiomas (ex: `en.json`) e alterar no `shared/config.lua`.
 
 ---
 
-## 🔧 Requisitos
+## � Estrutura
 
-- ox_lib
-- QBCore
-- Pasta `logs/` com permissão de escrita
+- **Client:** Escuta eventos de Duty e JobUpdate.
+- **Server:** Processa logs, salva no MySQL, gera CSV e envia para Discord (Multipart Request).
+- **Shared:** Carregador de Locale customizado e Configs.
 
 ---
 
 ## ✨ Créditos
 
-Autor: Gordela | New Age Studios | MRI QBOX
+**Autor:** Gordela | New Age Studios
+**Refatoração SQL & Locale:** S&S STORE - SNOW DEVE
 
 ---

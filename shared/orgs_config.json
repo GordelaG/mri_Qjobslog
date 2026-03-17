@@ -1,1 +1,34 @@
-{}
+{
+    "teste": {
+        "Color": 3447003,
+        "ReportWebhook": "",
+        "MinReportGrade": 0,
+        "IconURL": "",
+        "Webhook": "",
+        "LogTitle": "Teste-Ponto"
+    },
+    "ambulance": {
+        "Color": 15158332,
+        "ReportWebhook": "",
+        "MinReportGrade": 0,
+        "LogTitle": "Ponto Eletrônico - Hospital",
+        "Webhook": "",
+        "IconURL": "https://cdn-icons-png.flaticon.com/512/2966/2966334.png"
+    },
+    "mechanic": {
+        "Color": 15105570,
+        "ReportWebhook": "",
+        "MinReportGrade": 0,
+        "LogTitle": "Ponto Eletrônico - Mecanica",
+        "Webhook": "",
+        "IconURL": "https://cdn-icons-png.flaticon.com/512/2097/2097276.png"
+    },
+    "police": {
+        "Color": 3447003,
+        "ReportWebhook": "",
+        "MinReportGrade": 0,
+        "LogTitle": "Ponto Eletrônico - Policia",
+        "Webhook": "",
+        "IconURL": "https://cdn-icons-png.flaticon.com/512/2562/2562944.png"
+    }
+}
